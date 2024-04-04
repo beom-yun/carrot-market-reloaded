@@ -31,3 +31,9 @@ $ npx create-next-app@latest
 윈도우 : `Ctrl + Space`
 
 MAC : `Cmd + i`
+
+## 3.5 Responsive Modifiers
+
+Tailwind CSS 는 모바일 우선이다.
+
+모바일 디자인을 먼저 구현하고 그 뒤에 화면을 키워간다.
