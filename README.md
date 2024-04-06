@@ -67,3 +67,11 @@ plugins: [require("@tailwindcss/forms")],
 ```
 $ npm i -D daysyui@latest
 ```
+
+## 4.1 Create Account Screen
+
+`heroicons` 설치
+
+```
+$ npm i @heroicons/react
+```
