@@ -37,3 +37,13 @@ MAC : `Cmd + i`
 Tailwind CSS 는 모바일 우선이다.
 
 모바일 디자인을 먼저 구현하고 그 뒤에 화면을 키워간다.
+
+Tailwind CSS 내 prettier로 className 정렬방법
+
+`.prettierrc` 파일 내 아래 내용 추가
+
+```json
+{
+  "plugins": ["prettier-plugin-tailwindcss"]
+}
+```
