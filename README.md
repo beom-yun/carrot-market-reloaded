@@ -47,3 +47,23 @@ Tailwind CSS 내 prettier로 className 정렬방법
   "plugins": ["prettier-plugin-tailwindcss"]
 }
 ```
+
+## 3.12 Plugins
+
+`tailwindcss/forms` 유틸리티를 사용하여 form 요소를 쉽게 재정의할 수 있도록 form 스타일에 대한 기본적인 reset을 제공하는 플러그인
+
+```
+$ npm i -D @tailwindcss/forms
+```
+
+설치 이후 `tailwind.config.ts` 내 플러그인 설치
+
+```ts
+plugins: [require("@tailwindcss/forms")],
+```
+
+`daisyUI` Tailwind CSS용 가장 인기있는 컴포넌트 라이브러리
+
+```
+$ npm i -D daysyui@latest
+```
