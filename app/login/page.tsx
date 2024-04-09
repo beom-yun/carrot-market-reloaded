@@ -16,19 +16,12 @@ export default function Login() {
         <h2 className="text-xl">다시 오신걸 환영합니다!</h2>
       </div>
       <form action={action} className="flex flex-col gap-3">
-        <FormInput
-          name="email"
-          type="email"
-          placeholder="이메일"
-          required
-          errors={[]}
-        />
+        <FormInput name="email" type="email" placeholder="이메일" required />
         <FormInput
           name="password"
           type="password"
           placeholder="비밀번호"
           required
-          errors={state?.errors ?? []}
         />
         <FormButton text="로그인하기" />
       </form>

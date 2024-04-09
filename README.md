@@ -99,3 +99,21 @@ const [state, formAction] = useFormState(fn, initialState, permalink?);
 ```
 
 https://react.dev/reference/react-dom/hooks/useFormState
+
+## 6.0 Introduction to Zod
+
+`Zod`
+
+정적 타입 추론을 통한 TypeScript 스키마 검증
+
+```
+$ npm i zod
+```
+
+https://zod.dev
+
+타입스크립트는 작성된 코드의 컴파일 시점에만 타입 검사를 하며, 이것은 오직 개발자를 위한 것입니다.
+컴파일을 한 후 자바스크립트 런타임 환경에서는 타입스크립트가 아무런 힘을 쓰지 못합니다.
+따라서 zod 와 같은 라이브러리의 도움을 받아서 예측 불가능한 런타임 환경에서도 타입 검사(유효성 검증)을 가능하게 합니다.
+
+https://www.daleseo.com/zod-why-validation/
