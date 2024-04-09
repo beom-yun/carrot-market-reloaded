@@ -75,3 +75,15 @@ $ npm i -D daysyui@latest
 ```
 $ npm i @heroicons/react
 ```
+
+## 5.2 useFormStatus
+
+`useFormStatus`
+
+useFormStatus는 마지막 form submit의 상태 정보를 제공하는 Hook입니다.
+
+```ts
+const { pending, data, method, action } = useFormStatus();
+```
+
+https://react.dev/reference/react-dom/hooks/useFormStatus

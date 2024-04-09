@@ -1,3 +1,4 @@
 {
+  "arrowParens": "avoid",
   "plugins": ["prettier-plugin-tailwindcss"]
 }
