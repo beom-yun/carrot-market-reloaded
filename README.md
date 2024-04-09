@@ -87,3 +87,15 @@ const { pending, data, method, action } = useFormStatus();
 ```
 
 https://react.dev/reference/react-dom/hooks/useFormStatus
+
+## 5.3 useFormState
+
+`useFormState`
+
+useFormState는 form action의 결과에 따라 상태를 업데이트할 수 있는 Hook입니다.
+
+```ts
+const [state, formAction] = useFormState(fn, initialState, permalink?);
+```
+
+https://react.dev/reference/react-dom/hooks/useFormState
