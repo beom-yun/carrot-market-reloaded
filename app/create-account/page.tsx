@@ -5,6 +5,7 @@ import Input from "../components/input";
 import Button from "../components/button";
 import SocialLogin from "../components/social-login";
 import { createAccount } from "./actions";
+import { PASSWORD_MIN_LENGTH } from "../lib/constants";
 
 export default function CreateAccount() {
   const [state, dispatch] = useFormState(createAccount, null);
@@ -22,8 +23,6 @@ export default function CreateAccount() {
           placeholder="아이디"
           required
           errors={state?.fieldErrors.username}
-          minLength={3}
-          maxLength={10}
         />
         <Input
           name="email"
@@ -38,7 +37,7 @@ export default function CreateAccount() {
           placeholder="비밀번호"
           required
           errors={state?.fieldErrors.password}
-          minLength={4}
+          minLength={PASSWORD_MIN_LENGTH}
         />
         <Input
           name="confirmPassword"
@@ -46,7 +45,7 @@ export default function CreateAccount() {
           placeholder="비밀번호 확인"
           required
           errors={state?.fieldErrors.confirmPassword}
-          minLength={4}
+          minLength={PASSWORD_MIN_LENGTH}
         />
         <Button text="계정 만들기" />
       </form>
