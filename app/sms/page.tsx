@@ -16,7 +16,14 @@ export default function SMSLogin() {
       </div>
       <form action={dispatch} className="flex flex-col gap-3">
         <Input name="phone" type="number" placeholder="핸드폰 번호" required />
-        <Input name="token" type="number" placeholder="확인코드" required />
+        <Input
+          name="token"
+          type="text"
+          placeholder="확인코드"
+          required
+          min={100000}
+          max={999999}
+        />
         <Button text="인증하기" />
       </form>
     </div>
