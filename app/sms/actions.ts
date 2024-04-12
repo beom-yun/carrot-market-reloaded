@@ -43,6 +43,7 @@ export async function smsVerification(
         error: result.error.flatten(),
       };
     } else {
+      // Login
       redirect("/");
     }
   }
