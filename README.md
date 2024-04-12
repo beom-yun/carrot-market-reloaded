@@ -164,3 +164,19 @@ JavaScript의 validator 모듈은 문자열 검증 및 살균(sanitization)을 �
 $ npm i validator
 $ npm i @types/validator
 ```
+
+## 7.0 Prisma Setup
+
+`Prisma`
+
+차세대 Node.js 및 TypeScript ORM
+
+```
+$ npm i prisma
+```
+
+`Prisma 초기화`
+
+```
+$ npx prisma init
+```
