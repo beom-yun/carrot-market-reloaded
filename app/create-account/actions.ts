@@ -5,7 +5,7 @@ import {
   PASSWORD_MIN_LENGTH,
   PASSWORD_REGEX,
   PASSWORD_REGEX_ERROR,
-} from "../lib/constants";
+} from "../../lib/constants";
 
 const checkUsername = (username: string) => !username.includes("potato");
 
