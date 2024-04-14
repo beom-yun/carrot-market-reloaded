@@ -183,9 +183,17 @@ $ npx prisma init
 
 ## 8.2 Password Hashing
 
-bcrypt
+`bcrypt`
 
 ```
 $ npm i bcrypt
 $ npm i @types/bcrypt
 ```
+
+## 8.3 Iron Session
+
+```
+$ npm i iron-session
+```
+
+https://1password.com/password-generator/
