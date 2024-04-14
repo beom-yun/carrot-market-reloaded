@@ -180,3 +180,12 @@ $ npm i prisma
 ```
 $ npx prisma init
 ```
+
+## 8.2 Password Hashing
+
+bcrypt
+
+```
+$ npm i bcrypt
+$ npm i @types/bcrypt
+```

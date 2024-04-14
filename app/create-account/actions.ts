@@ -7,6 +7,7 @@ import {
   PASSWORD_REGEX_ERROR,
 } from "../../lib/constants";
 import db from "@/lib/db";
+import bcrypt from "bcrypt";
 
 const checkUsername = async (username: string) => {
   const user = await db.user.findUnique({
@@ -72,8 +73,16 @@ export async function createAccount(prevState: any, formData: FormData) {
   if (!result.success) {
     return result.error.flatten();
   } else {
-    // hash password
-    // save the user to db
+    const hashedPassword = await bcrypt.hash(result.data.password, 12);
+    const user = await db.user.create({
+      data: {
+        username: result.data.username,
+        email: result.data.email,
+        password: hashedPassword,
+      },
+      select: { id: true },
+    });
+    console.log(user);
     // log the user in
     // redirect "/home"
   }
