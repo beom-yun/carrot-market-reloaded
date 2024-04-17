@@ -1,4 +1,6 @@
-import { notFound } from "next/navigation";
+import db from "@/lib/db";
+import getSession from "@/lib/session";
+import { notFound, redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -12,7 +14,7 @@ export async function GET(request: NextRequest) {
     code,
   }).toString();
   const accessTokenURL = `https://github.com/login/oauth/access_token?${accessTokenParams}`;
-  const accessTokenData = await (
+  const { error, access_token } = await (
     await fetch(accessTokenURL, {
       method: "POST",
       headers: {
@@ -20,8 +22,37 @@ export async function GET(request: NextRequest) {
       },
     })
   ).json();
-  if ("error" in accessTokenData) {
+  if (error) {
     return new Response(null, { status: 400 });
   }
-  return Response.json({ accessTokenData });
+  const userProfileResponse = await fetch("https://api.github.com/user", {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+    cache: "no-cache",
+  });
+  const { login, id, avatar_url } = await userProfileResponse.json();
+  const user = await db.user.findUnique({
+    where: { github_id: id + "" },
+    select: { id: true },
+  });
+  if (user) {
+    const session = await getSession();
+    session.id = user.id;
+    await session.save();
+    return redirect("/profile");
+  } else {
+    const newUser = await db.user.create({
+      data: {
+        username: login,
+        github_id: id + "",
+        avatar: avatar_url,
+      },
+      select: { id: true },
+    });
+    const session = await getSession();
+    session.id = newUser.id;
+    await session.save();
+    return redirect("/profile");
+  }
 }
