@@ -82,6 +82,9 @@ $ npm i @heroicons/react
 
 useFormStatus는 마지막 form submit의 상태 정보를 제공하는 Hook입니다.
 
+useFormStatus는 동일한 컴포넌트에서 렌더링한 form에 대한 상태 정보를 반환하지 않습니다.
+useFormStatus Hook은 상위 form에 대한 정보만 반환합니다. Hook을 호출하는 동이랗ㄴ 컴포넌트나 자식 컴포넌트에서 렌더링한 form의 상태 정보는 반환하지 않습니다.
+
 ```ts
 const { pending, data, method, action } = useFormStatus();
 ```
