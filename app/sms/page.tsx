@@ -3,10 +3,10 @@
 import FormButton from "@/components/form-btn";
 import FormInput from "@/components/form-input";
 import { useFormState } from "react-dom";
-import { smsVerification } from "./actions";
+import { smsLogIn } from "./actions";
 
 export default function SMSLogIn() {
-  const [state, dispatch] = useFormState(smsVerification, null);
+  const [state, dispatch] = useFormState(smsLogIn, null);
 
   return (
     <div className="flex flex-col gap-10 px-6 py-8">
@@ -16,7 +16,7 @@ export default function SMSLogIn() {
       </div>
       <form action={dispatch} className="flex flex-col gap-3">
         <FormInput
-          type="number"
+          type="text"
           name="phoneNumber"
           placeholder="핸드폰 번호"
           required
@@ -27,6 +27,8 @@ export default function SMSLogIn() {
           name="verificationCode"
           placeholder="인증 코드"
           required
+          min={100000}
+          max={999999}
           errors={state?.fieldErrors.verificationCode}
         />
         <FormButton text="인증하기" />
