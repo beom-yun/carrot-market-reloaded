@@ -21,6 +21,8 @@ export default function CreateAccount() {
           name="username"
           placeholder="아이디"
           required
+          minLength={3}
+          maxLength={16}
           errors={state?.fieldErrors.username}
         />
         <FormInput
@@ -35,6 +37,7 @@ export default function CreateAccount() {
           name="password"
           placeholder="비밀번호"
           required
+          minLength={4}
           errors={state?.fieldErrors.password}
         />
         <FormInput
@@ -42,6 +45,7 @@ export default function CreateAccount() {
           name="confirmPassword"
           placeholder="비밀번호 확인"
           required
+          minLength={4}
           errors={state?.fieldErrors.confirmPassword}
         />
         <FormButton text="계정 만들기" />
