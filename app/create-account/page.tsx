@@ -16,19 +16,33 @@ export default function CreateAccount() {
         <h2 className="text-xl">아래 양식에 작성해주세요!</h2>
       </div>
       <form action={dispatch} className="flex flex-col gap-3">
-        <FormInput type="text" name="username" placeholder="아이디" required />
-        <FormInput type="email" name="email" placeholder="이메일" required />
+        <FormInput
+          type="text"
+          name="username"
+          placeholder="아이디"
+          required
+          errors={state?.fieldErrors.username}
+        />
+        <FormInput
+          type="email"
+          name="email"
+          placeholder="이메일"
+          required
+          errors={state?.fieldErrors.email}
+        />
         <FormInput
           type="password"
           name="password"
           placeholder="비밀번호"
           required
+          errors={state?.fieldErrors.password}
         />
         <FormInput
           type="password"
           name="confirmPassword"
           placeholder="비밀번호 확인"
           required
+          errors={state?.fieldErrors.confirmPassword}
         />
         <FormButton text="계정 만들기" />
       </form>
