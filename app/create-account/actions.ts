@@ -1,5 +1,6 @@
 "use server";
 
+import bcrypt from "bcrypt";
 import {
   PASSWORD_MIN_LENGTH,
   PASSWORD_REGEX,
@@ -75,9 +76,15 @@ export async function createAccount(prevState: any, formData: FormData) {
   if (!result.success) {
     return result.error.flatten();
   } else {
-    // check if the email is already used
-    // hash password
-    // save the user to db
+    const user = await db.user.create({
+      data: {
+        username: result.data.username,
+        email: result.data.email,
+        password: await bcrypt.hash(result.data.password, 12),
+      },
+      select: { id: true },
+    });
+    console.log(user);
     // log the user in
     // redirect "/home"
   }
