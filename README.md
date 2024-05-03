@@ -184,6 +184,16 @@ $ npm i prisma
 $ npx prisma init
 ```
 
+schema.prisma에 prettier 적용하기
+
+settings.json 파일 내에 아래 내용 추가
+
+```json
+"[prisma]": {
+  "editor.defaultFormatter": "Prisma.prisma"
+},
+```
+
 ## 8.2 Password Hashing
 
 `bcrypt`
