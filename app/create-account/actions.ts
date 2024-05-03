@@ -20,22 +20,6 @@ const checkPasswords = ({
   confirmPassword: string;
 }) => password === confirmPassword;
 
-const checkUniqueUsername = async (username: string) => {
-  const user = await db.user.findUnique({
-    where: { username },
-    select: { id: true },
-  });
-  return !Boolean(user);
-};
-
-const checkUniqueEmail = async (email: string) => {
-  const user = await db.user.findUnique({
-    where: { email },
-    select: { id: true },
-  });
-  return !Boolean(user);
-};
-
 const formSchema = z
   .object({
     username: z
@@ -46,13 +30,8 @@ const formSchema = z
       .min(USERNAME_MIN_LENGTH, "아이디가 너무 짧습니다.(최소 3자)")
       .max(USERNAME_MAX_LENGTH, "아이디가 너무 깁니다.(최대 16자)")
       .trim()
-      .toLowerCase()
-      .refine(checkUniqueUsername, "이미 사용중인 아이디입니다."),
-    email: z
-      .string()
-      .email()
-      .toLowerCase()
-      .refine(checkUniqueEmail, "이미 사용중인 이메일입니다."),
+      .toLowerCase(),
+    email: z.string().email().toLowerCase(),
     password: z
       .string()
       .min(PASSWORD_MIN_LENGTH)
@@ -61,6 +40,36 @@ const formSchema = z
         "비밀번호는 대문자, 소문자, 숫자, 특수문자를 포함하여야 합니다.",
       ),
     confirmPassword: z.string().min(PASSWORD_MIN_LENGTH),
+  })
+  .superRefine(async ({ username }, ctx) => {
+    const user = await db.user.findUnique({
+      where: { username },
+      select: { id: true },
+    });
+    if (user) {
+      ctx.addIssue({
+        code: "custom",
+        message: "이미 사용중인 아이디입니다.",
+        path: ["username"],
+        fatal: true,
+      });
+      return z.NEVER;
+    }
+  })
+  .superRefine(async ({ email }, ctx) => {
+    const user = await db.user.findUnique({
+      where: { email },
+      select: { id: true },
+    });
+    if (user) {
+      ctx.addIssue({
+        code: "custom",
+        message: "이미 사용중인 이메일입니다.",
+        path: ["email"],
+        fatal: true,
+      });
+      return z.NEVER;
+    }
   })
   .refine(checkPasswords, {
     message: "패스워드가 일치하지 않습니다.",
@@ -75,6 +84,7 @@ export async function createAccount(prevState: any, formData: FormData) {
     confirmPassword: formData.get("confirmPassword"),
   };
   const result = await formSchema.safeParseAsync(data);
+  // console.log(result.error?.flatten());
   if (!result.success) {
     return result.error.flatten();
   } else {
