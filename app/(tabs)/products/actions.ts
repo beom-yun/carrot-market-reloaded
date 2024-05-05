@@ -1,5 +1,6 @@
 "use server";
 
+import { PAGE_SIZE } from "@/lib/constants";
 import db from "@/lib/db";
 
 export async function getMoreProducts(page: number) {
@@ -14,8 +15,8 @@ export async function getMoreProducts(page: number) {
     orderBy: {
       created_at: "desc",
     },
-    take: 3,
-    skip: 3,
+    take: PAGE_SIZE,
+    skip: page * PAGE_SIZE,
   });
   return products;
 }
