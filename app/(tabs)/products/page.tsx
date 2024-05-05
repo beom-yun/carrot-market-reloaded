@@ -1,7 +1,7 @@
 import ListProduct from "@/components/list-product";
 import db from "@/lib/db";
 
-export async function getProducts() {
+async function getProducts() {
   const products = await db.product.findMany({
     select: {
       id: true,
