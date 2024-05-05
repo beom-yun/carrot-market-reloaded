@@ -219,3 +219,7 @@ NextJS의 Image는 이미지를 자동으로 최적화를 해 주어 성능을 �
 
 따라서 next.config.mjs에서 hostname들을 등록해 주어야 한다.
 (nextConfig > images > remotePatterns > hostname)
+
+## 10.9 Infinite Scrolling
+
+`IntersectionObserver`
