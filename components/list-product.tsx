@@ -22,7 +22,7 @@ export default function ListProduct({
       <div className="relative size-28 overflow-hidden rounded-md">
         <Image
           fill
-          src={`${photo}/avatar`}
+          src={`${photo}/width=200,height=200`}
           alt={title}
           className="object-cover"
         />
