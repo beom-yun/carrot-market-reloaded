@@ -9,6 +9,7 @@ import { useFormState } from "react-dom";
 
 export default function AddProduct() {
   const [preview, setPreview] = useState("");
+  const [photoId, setPhotoId] = useState("");
   const [uploadUrl, setUploadUrl] = useState("");
   const onImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -23,10 +24,25 @@ export default function AddProduct() {
     const { success, result } = await getUploadUrl();
     if (success) {
       const { id, uploadURL } = result;
+      setPhotoId(id);
       setUploadUrl(uploadURL);
     }
   };
-  const [state, dispatch] = useFormState(uploadProduct, null);
+  const interceptAction = async (_: any, formData: FormData) => {
+    const photo = formData.get("photo");
+    if (!photo) return;
+    const cloudflareForm = new FormData();
+    cloudflareForm.append("file", photo);
+    const response = await fetch(uploadUrl, {
+      method: "post",
+      body: cloudflareForm,
+    });
+    if (response.status !== 200) return;
+    const photoUrl = `https://imagedelivery.net/X0hK0a8FJJvNCyeUtIVOrA/${photoId}`;
+    formData.set("photo", photoUrl);
+    return uploadProduct(_, formData);
+  };
+  const [state, dispatch] = useFormState(interceptAction, null);
 
   return (
     <div>
