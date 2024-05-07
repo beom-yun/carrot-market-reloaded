@@ -223,3 +223,15 @@ NextJS의 Image는 이미지를 자동으로 최적화를 해 주어 성능을 �
 ## 10.9 Infinite Scrolling
 
 `IntersectionObserver`
+
+## 11.8 RHF Refactor
+
+`React Hook Form`
+
+https://react-hook-form.com
+
+`@hookform/resolvers`
+
+npm i @hookform/resolvers
+
+https://www.npmjs.com/package/@hookform/resolvers
