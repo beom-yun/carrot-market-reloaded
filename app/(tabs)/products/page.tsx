@@ -17,10 +17,14 @@ async function getInitialProducts() {
     orderBy: {
       created_at: "desc",
     },
-    take: PAGE_SIZE,
+    // take: PAGE_SIZE,
   });
   return products;
 }
+
+export const metadata = {
+  title: "Products",
+};
 
 export type InitialProducts = Prisma.PromiseReturnType<
   typeof getInitialProducts
